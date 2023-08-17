@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { Banner } from './componentes/Banner/Banner';
 import { Formulario } from './componentes/Formulario';
 import Time from './componentes/Time';
+import Rodape from './componentes/Rodape';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 
@@ -46,12 +49,24 @@ function App() {
   const [colaboradores, setColaboradores] = useState([]);
 
   const aoAdicionarNovo = (colaborador) => {
-    setColaboradores([...colaboradores, colaborador])
+    const colaboradorExistente = colaboradores.find(x => x.nome === colaborador.nome && x.time === colaborador.time);
+    if (!!colaboradorExistente) {
+      toast.warn(`Colaborador já está cadastrado no time de ${colaborador.time}`);
+    } else {
+      toast.success('Novo colaborador cadastrado com sucesso!');
+      setColaboradores([...colaboradores, colaborador]);
+    }
   }
 
   return (
     <div className="App">
       <Banner></Banner>
+      <ToastContainer
+        autoClose={3000}
+        position='top-center'
+        pauseOnHover
+        theme='dark'
+      ></ToastContainer>
       <Formulario times={times.map(time => time.nome)} aoCadastrarColaborador={colaborador => aoAdicionarNovo(colaborador)}></Formulario>
       {times.map(time =>
         <Time
@@ -61,6 +76,7 @@ function App() {
           corSecundaria={time.corSecundaria}
           colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
         ></Time>)}
+      <Rodape></Rodape>
     </div>
   );
 }

@@ -10,7 +10,7 @@ export const Formulario = (props) => {
     const [nome, setNome] = useState('');
     const [cargo, setCargo] = useState('');
     const [imagem, setImagem] = useState('');
-    const [time, setTime] = useState(props.times[0]);
+    const [time, setTime] = useState('');
 
     const aoSalvar = (event) => {
         event.preventDefault();
@@ -21,9 +21,10 @@ export const Formulario = (props) => {
             time
         })
 
-        setNome('');
-        setCargo('');
-        setImagem('');
+        // setCargo('');
+        // setNome('');
+        // setTime('');
+        // setImagem('');
     }
 
     return (
@@ -31,18 +32,21 @@ export const Formulario = (props) => {
             <form onSubmit={(event) => aoSalvar(event)}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
                 <CampoTexto
+                    valor={nome}
                     aoAlterar={valor => setNome(valor)}
                     obrigatorio={true}
                     label="Nome"
                     placeholder="Digite seu nome">
                 </CampoTexto>
                 <CampoTexto
+                    valor={cargo}
                     aoAlterar={valor => setCargo(valor)}
                     obrigatorio={true}
                     label="Cargo"
                     placeholder="Digite seu cargo">
                 </CampoTexto>
                 <CampoTexto
+                    valor={imagem}
                     aoAlterar={valor => setImagem(valor)}
                     obrigatorio={true}
                     label="Imagem"
