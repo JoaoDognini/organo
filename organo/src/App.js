@@ -48,29 +48,7 @@ function App() {
     },
   ])
 
-  const [colaboradores, setColaboradores] = useState([
-    {
-      id: uuidv4(),
-      nome: 'João',
-      cargo: 'Dev',
-      imagem: 'https://github.com/JoaoDognini.png',
-      time: times[1].nome
-    },
-    {
-      id: uuidv4(),
-      nome: 'João 1',
-      cargo: 'Dev',
-      imagem: 'https://github.com/JoaoDognini.png',
-      time: times[2].nome
-    },
-    {
-      id: uuidv4(),
-      nome: 'João 2',
-      cargo: 'Dev',
-      imagem: 'https://github.com/JoaoDognini.png',
-      time: times[2].nome
-    }
-  ]);
+  const [colaboradores, setColaboradores] = useState([]);
 
   function mudarCorTime(cor, id) {
     setTimes(times.map(time => {
@@ -81,7 +59,6 @@ function App() {
 
   function deletarColaborador(id) {
     setColaboradores(colaboradores.filter(colaborador => colaborador.id !== id));
-    console.log(id);
   }
 
   const aoAdicionarNovo = (colaborador) => {
@@ -94,8 +71,15 @@ function App() {
     }
   }
 
-  function cadastrarTime({nome, cor}) {
-    setTimes([...times, {nome, cor, id: uuidv4() }]);
+  function cadastrarTime({ nome, cor }) {
+    setTimes([...times, { nome, cor, id: uuidv4() }]);
+  }
+
+  function favoritar(id) {
+    setColaboradores(colaboradores.map(colaborador => {
+      if (colaborador.id === id) colaborador.favorito = !colaborador.favorito;
+      return colaborador
+    }))
   }
 
   return (
@@ -119,6 +103,7 @@ function App() {
           colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
           aoDeletar={deletarColaborador}
           mudarCor={mudarCorTime}
+          aoFavoritar={favoritar}
         ></Time>)}
       <Rodape></Rodape>
     </div>
