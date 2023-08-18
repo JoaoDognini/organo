@@ -6,54 +6,65 @@ import Time from './componentes/Time';
 import Rodape from './componentes/Rodape';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
 
   const [times, setTimes] = useState([
     {
+      id: uuidv4(),
       nome: 'Programação',
       cor: '#57C278',
     },
     {
+      id: uuidv4(),
       nome: 'Front-End',
       cor: '#82CFFA',
     },
     {
+      id: uuidv4(),
       nome: 'Data Science',
       cor: '#A6D157',
     },
     {
+      id: uuidv4(),
       nome: 'DevOps',
       cor: '#E06B69',
     },
     {
+      id: uuidv4(),
       nome: 'UX e Design',
       cor: '#DB6EBF',
     },
     {
+      id: uuidv4(),
       nome: 'Mobile',
       cor: '#FFBA05',
     },
     {
+      id: uuidv4(),
       nome: 'Inovação e Gestão',
       cor: '#FF8A29',
     },
   ])
-  
+
   const [colaboradores, setColaboradores] = useState([
     {
+      id: uuidv4(),
       nome: 'João',
       cargo: 'Dev',
       imagem: 'https://github.com/JoaoDognini.png',
       time: times[1].nome
     },
     {
+      id: uuidv4(),
       nome: 'João 1',
       cargo: 'Dev',
       imagem: 'https://github.com/JoaoDognini.png',
       time: times[2].nome
     },
     {
+      id: uuidv4(),
       nome: 'João 2',
       cargo: 'Dev',
       imagem: 'https://github.com/JoaoDognini.png',
@@ -61,16 +72,16 @@ function App() {
     }
   ]);
 
-  function mudarCorTime(cor, nome) {
+  function mudarCorTime(cor, id) {
     setTimes(times.map(time => {
-      if (time.nome === nome) time.cor = cor;
+      if (time.id === id) time.cor = cor;
       return time;
     }))
-
   }
 
-  function deletarColaborador() {
-    console.log('Deletando');
+  function deletarColaborador(id) {
+    setColaboradores(colaboradores.filter(colaborador => colaborador.id !== id));
+    console.log(id);
   }
 
   const aoAdicionarNovo = (colaborador) => {
@@ -83,6 +94,10 @@ function App() {
     }
   }
 
+  function cadastrarTime({nome, cor}) {
+    setTimes([...times, {nome, cor, id: uuidv4() }]);
+  }
+
   return (
     <div className="App">
       <Banner></Banner>
@@ -92,12 +107,15 @@ function App() {
         pauseOnHover
         theme='dark'
       ></ToastContainer>
-      <Formulario times={times.map(time => time.nome)} aoCadastrarColaborador={colaborador => aoAdicionarNovo(colaborador)}></Formulario>
+      <Formulario
+        times={times.map(time => time.nome)}
+        aoCadastrarColaborador={colaborador => aoAdicionarNovo(colaborador)}
+        aoCadastrarTime={cadastrarTime}
+      ></Formulario>
       {times.map(time =>
         <Time
           key={time.nome}
-          nome={time.nome}
-          cor={time.cor}
+          time={time}
           colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
           aoDeletar={deletarColaborador}
           mudarCor={mudarCorTime}
