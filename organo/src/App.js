@@ -9,44 +9,69 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 
-  const times = [
+  const [times, setTimes] = useState([
     {
       nome: 'Programação',
-      corPrimaria: '#57C278',
-      corSecundaria: '#D9F7E9'
+      cor: '#57C278',
     },
     {
       nome: 'Front-End',
-      corPrimaria: '#82CFFA',
-      corSecundaria: '#E8F8FF'
+      cor: '#82CFFA',
     },
     {
       nome: 'Data Science',
-      corPrimaria: '#A6D157',
-      corSecundaria: '#F0F8E2'
+      cor: '#A6D157',
     },
     {
       nome: 'DevOps',
-      corPrimaria: '#E06B69',
-      corSecundaria: '#FDE7E8'
+      cor: '#E06B69',
     },
     {
       nome: 'UX e Design',
-      corPrimaria: '#DB6EBF',
-      corSecundaria: '#FAE9F5'
+      cor: '#DB6EBF',
     },
     {
       nome: 'Mobile',
-      corPrimaria: '#FFBA05',
-      corSecundaria: '#FFF5D9'
+      cor: '#FFBA05',
     },
     {
       nome: 'Inovação e Gestão',
-      corPrimaria: '#FF8A29',
-      corSecundaria: '#FFEEDF'
+      cor: '#FF8A29',
     },
-  ]
-  const [colaboradores, setColaboradores] = useState([]);
+  ])
+  
+  const [colaboradores, setColaboradores] = useState([
+    {
+      nome: 'João',
+      cargo: 'Dev',
+      imagem: 'https://github.com/JoaoDognini.png',
+      time: times[1].nome
+    },
+    {
+      nome: 'João 1',
+      cargo: 'Dev',
+      imagem: 'https://github.com/JoaoDognini.png',
+      time: times[2].nome
+    },
+    {
+      nome: 'João 2',
+      cargo: 'Dev',
+      imagem: 'https://github.com/JoaoDognini.png',
+      time: times[2].nome
+    }
+  ]);
+
+  function mudarCorTime(cor, nome) {
+    setTimes(times.map(time => {
+      if (time.nome === nome) time.cor = cor;
+      return time;
+    }))
+
+  }
+
+  function deletarColaborador() {
+    console.log('Deletando');
+  }
 
   const aoAdicionarNovo = (colaborador) => {
     const colaboradorExistente = colaboradores.find(x => x.nome === colaborador.nome && x.time === colaborador.time);
@@ -72,9 +97,10 @@ function App() {
         <Time
           key={time.nome}
           nome={time.nome}
-          corPrimaria={time.corPrimaria}
-          corSecundaria={time.corSecundaria}
+          cor={time.cor}
           colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
+          aoDeletar={deletarColaborador}
+          mudarCor={mudarCorTime}
         ></Time>)}
       <Rodape></Rodape>
     </div>
