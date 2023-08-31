@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
-import { Banner } from './componentes/Banner/Banner';
 import { Formulario } from './componentes/Formulario';
+import Banner from './componentes/Banner'
 import Time from './componentes/Time';
 import Rodape from './componentes/Rodape';
 import { ToastContainer, toast } from "react-toastify";
@@ -84,7 +84,7 @@ function App() {
 
   return (
     <div className="App">
-      <Banner></Banner>
+      <Banner enderecoImagem='/imagens/banner.png' textoAlternativo=''></Banner>
       <ToastContainer
         autoClose={3000}
         position='top-center'
