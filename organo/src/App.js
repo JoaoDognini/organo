@@ -84,7 +84,7 @@ function App() {
 
   return (
     <div className="App">
-      <Banner enderecoImagem='/imagens/banner.png' textoAlternativo=''></Banner>
+      <Banner enderecoImagem='/imagens/banner.png' textoAlternativo='O banner principal da página do Organof'></Banner>
       <ToastContainer
         autoClose={3000}
         position='top-center'
