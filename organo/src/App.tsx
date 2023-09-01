@@ -6,77 +6,79 @@ import Time from './componentes/Time';
 import Rodape from './componentes/Rodape';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
+import { IColaborador } from './shared/interfaces/IColaborador';
+import { ITime } from './shared/interfaces/ITime';
 
 function App() {
 
   const [times, setTimes] = useState([
     {
-      id: uuidv4(),
+      id: uuid(),
       nome: 'Programação',
       cor: '#57C278',
     },
     {
-      id: uuidv4(),
+      id: uuid(),
       nome: 'Front-End',
       cor: '#82CFFA',
     },
     {
-      id: uuidv4(),
+      id: uuid(),
       nome: 'Data Science',
       cor: '#A6D157',
     },
     {
-      id: uuidv4(),
+      id: uuid(),
       nome: 'DevOps',
       cor: '#E06B69',
     },
     {
-      id: uuidv4(),
+      id: uuid(),
       nome: 'UX e Design',
       cor: '#DB6EBF',
     },
     {
-      id: uuidv4(),
+      id: uuid(),
       nome: 'Mobile',
       cor: '#FFBA05',
     },
     {
-      id: uuidv4(),
+      id: uuid(),
       nome: 'Inovação e Gestão',
       cor: '#FF8A29',
     },
   ])
 
-  const [colaboradores, setColaboradores] = useState([]);
+  const [colaboradores, setColaboradores] = useState<IColaborador[]>([]);
 
-  function mudarCorTime(cor, id) {
+  function mudarCorTime(cor: string, id: string) {
     setTimes(times.map(time => {
       if (time.id === id) time.cor = cor;
       return time;
     }))
   }
 
-  function deletarColaborador(id) {
+  function deletarColaborador(id: string) {
     setColaboradores(colaboradores.filter(colaborador => colaborador.id !== id));
   }
 
-  const aoAdicionarNovo = (colaborador) => {
+  const aoAdicionarNovo = (colaborador: IColaborador) => {
     const colaboradorExistente = colaboradores.find(x => x.nome === colaborador.nome && x.time === colaborador.time);
     if (!!colaboradorExistente) {
       toast.warn(`Colaborador já está cadastrado no time de ${colaborador.time}`);
     } else {
       toast.success('Novo colaborador cadastrado com sucesso!');
-      colaborador.id = uuidv4();
+      colaborador.id = uuid();
       setColaboradores([...colaboradores, colaborador]);
     }
   }
 
-  function cadastrarTime({ nome, cor }) {
-    setTimes([...times, { nome, cor, id: uuidv4() }]);
+  function cadastrarTime({ nome, cor }: ITime) {
+    setTimes([...times, { nome, cor, id: uuid() }]);
   }
 
-  function favoritar(id) {
+  function favoritar(id: string) {
     setColaboradores(colaboradores.map(colaborador => {
       if (colaborador.id === id) colaborador.favorito = !colaborador.favorito;
       return colaborador

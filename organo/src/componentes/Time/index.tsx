@@ -9,7 +9,7 @@ interface TimeProps {
     colaboradores: IColaborador[],
     mudarCor: (evento: string, id: string) => void,
     aoDeletar: (id: string) => void,
-    aoFavoritar: () => {}
+    aoFavoritar: (id: string) => void
 }
 
 const Time = ({ time, colaboradores, aoDeletar, mudarCor, aoFavoritar }: TimeProps) => {
@@ -35,7 +35,7 @@ const Time = ({ time, colaboradores, aoDeletar, mudarCor, aoFavoritar }: TimePro
                     })}
                 </div>
             </section>
-            : ''
+            : <></>
     )
 }
 
