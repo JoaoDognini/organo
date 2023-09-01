@@ -1,8 +1,18 @@
+import { IColaborador } from '../../shared/interfaces/IColaborador';
+import { ITime } from '../../shared/interfaces/ITime';
 import Colaborador from '../Colaborador';
 import './Time.css';
 import hexToRgba from 'hex-to-rgba';
 
-const Time = ({ time, colaboradores, aoDeletar, mudarCor, aoFavoritar }) => {
+interface TimeProps {
+    time: ITime,
+    colaboradores: IColaborador[],
+    mudarCor: (evento: string, id: string) => void,
+    aoDeletar: (id: string) => void,
+    aoFavoritar: () => {}
+}
+
+const Time = ({ time, colaboradores, aoDeletar, mudarCor, aoFavoritar }: TimeProps) => {
     const estiloSecao = { backgroundImage: 'url(/imagens/fundo.png)', backgroundColor: hexToRgba(time.cor, '0.6') }
     const estiloTitulo = { borderColor: time.cor }
 

@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 80px 100px;
+    padding: 1.5rem 6.25rem;
     background-image: url('../../../public/imagens/fundo.png');
 }
 
@@ -11,11 +11,11 @@
     padding: 0;
     display: flex;
     list-style: none;
-    gap: 32px;
+    gap: 2rem;
 }
 
 .rodape div h2 {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-family: 'Montserrat';
     color: #FFF;
     font-weight: 500;

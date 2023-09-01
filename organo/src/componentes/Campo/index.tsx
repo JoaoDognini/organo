@@ -3,9 +3,9 @@ import './Campo.css';
 interface CampoProps {
     label: string;
     valor: string;
-    type: string;
+    type?: string;
     placeholder: string;
-    obrigatorio: boolean;
+    obrigatorio?: boolean;
     aoAlterar: (valor: string) => void
 }
 

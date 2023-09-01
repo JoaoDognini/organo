@@ -1,44 +1,60 @@
+import { IColaborador } from '../../shared/interfaces/IColaborador';
+import { ITime } from '../../shared/interfaces/ITime';
 import Botao from '../Botao';
 import Campo from '../Campo';
 import ListaSuspensa from '../ListaSuspensa';
 import './Formulario.css';
 import { useState } from 'react'
 
-export const Formulario = ({ times, aoCadastrarColaborador, aoCadastrarTime }) => {
+interface FormularioProps {
+    times: string[],
+    aoCadastrarColaborador: (colaborador: IColaborador) => void,
+    aoCadastrarTime: (time: ITime) => void
+}
+
+export const Formulario = ({ times, aoCadastrarColaborador, aoCadastrarTime }: FormularioProps) => {
 
 
+    const [id, setId] = useState('')
+    const [favorito, setFavorito] = useState(false)
     const [nome, setNome] = useState('');
     const [cargo, setCargo] = useState('');
     const [imagem, setImagem] = useState('');
     const [time, setTime] = useState('');
 
     const [nomeTime, setNomeTime] = useState('');
-    const [corTime, setCorTime] = useState('');
+    const [corTime, setCorTime] = useState('#000000');
 
-    const cadastrarColaborador = (event) => {
+    const cadastrarColaborador = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         aoCadastrarColaborador({
+            id,
+            favorito,
             nome,
             cargo,
             imagem,
             time
         })
 
+        setId('');
+        setFavorito(false);
         setCargo('');
         setNome('');
         setTime('');
         setImagem('');
     }
 
-    const cadastrarTime = (event) => {
+    const cadastrarTime = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         aoCadastrarTime({
+            id: id,
             nome: nomeTime,
             cor: corTime
         })
 
+        setId('');
         setNomeTime('');
-        setCorTime('');
+        setCorTime('#000000');
     }
 
     return (
@@ -50,22 +66,22 @@ export const Formulario = ({ times, aoCadastrarColaborador, aoCadastrarTime }) =
                     aoAlterar={valor => setNome(valor)}
                     obrigatorio={true}
                     label="Nome"
-                    placeholder="Digite seu nome">
-                </Campo>
+                    placeholder="Digite seu nome"
+                />
                 <Campo
                     valor={cargo}
                     aoAlterar={valor => setCargo(valor)}
                     obrigatorio={true}
                     label="Cargo"
-                    placeholder="Digite seu cargo">
-                </Campo>
+                    placeholder="Digite seu cargo"
+                />
                 <Campo
                     valor={imagem}
                     aoAlterar={valor => setImagem(valor)}
                     obrigatorio={true}
                     label="Imagem"
-                    placeholder="Informe o endereço da imagem">
-                </Campo>
+                    placeholder="Informe o endereço da imagem"
+                />
                 <ListaSuspensa
                     label="Time"
                     itens={times}
@@ -84,16 +100,16 @@ export const Formulario = ({ times, aoCadastrarColaborador, aoCadastrarTime }) =
                     aoAlterar={valor => setNomeTime(valor)}
                     obrigatorio
                     label="Nome do time"
-                    placeholder="Digite o nome do time">
-                </Campo>
+                    placeholder="Digite o nome do time"
+                />
                 <Campo
                     type='color'
                     valor={corTime}
                     aoAlterar={valor => setCorTime(valor)}
                     obrigatorio
                     label="Cor"
-                    placeholder="Escolha a cor do time">
-                </Campo>
+                    placeholder="Escolha a cor do time"
+                />
                 <Botao>
                     Criar Time
                 </Botao>

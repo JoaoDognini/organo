@@ -67,6 +67,7 @@ function App() {
       toast.warn(`Colaborador já está cadastrado no time de ${colaborador.time}`);
     } else {
       toast.success('Novo colaborador cadastrado com sucesso!');
+      colaborador.id = uuidv4();
       setColaboradores([...colaboradores, colaborador]);
     }
   }
