@@ -21,6 +21,7 @@ export const Formulario = ({ times, aoCadastrarColaborador, aoCadastrarTime }: F
     const [cargo, setCargo] = useState('');
     const [imagem, setImagem] = useState('');
     const [time, setTime] = useState('');
+    const [data, setData] = useState('');
 
     const [nomeTime, setNomeTime] = useState('');
     const [corTime, setCorTime] = useState('#000000');
@@ -33,7 +34,8 @@ export const Formulario = ({ times, aoCadastrarColaborador, aoCadastrarTime }: F
             nome,
             cargo,
             imagem,
-            time
+            time,
+            data
         })
 
         setId('');
@@ -42,6 +44,7 @@ export const Formulario = ({ times, aoCadastrarColaborador, aoCadastrarTime }: F
         setNome('');
         setTime('');
         setImagem('');
+        setData('');
     }
 
     const cadastrarTime = (event: React.FormEvent<HTMLFormElement>) => {
@@ -81,6 +84,13 @@ export const Formulario = ({ times, aoCadastrarColaborador, aoCadastrarTime }: F
                     obrigatorio={true}
                     label="Imagem"
                     placeholder="Informe o endereço da imagem"
+                />
+                <Campo
+                    label='Data de entrada'
+                    placeholder=''
+                    type='date'
+                    valor={data}
+                    aoAlterar={valor => setData(valor)}
                 />
                 <ListaSuspensa
                     label="Time"
