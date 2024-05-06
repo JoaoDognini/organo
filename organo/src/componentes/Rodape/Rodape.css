@@ -20,3 +20,14 @@
     color: #FFF;
     font-weight: 500;
 }
+
+@media (max-width: 980px) {
+    .rodape {
+        display: block;
+        text-align: center;
+    }
+
+    .rodape .redes ul {
+        justify-content: center;
+    }
+}

@@ -75,7 +75,9 @@ function App() {
   }
 
   function cadastrarTime({ nome, cor }: ITime) {
-    setTimes([...times, { nome, cor, id: uuid() }]);
+    times.find(time => time.nome.toLowerCase() === nome.toLowerCase())
+      ? toast.warn(`Time ${nome} já cadastrado.`)
+      : setTimes([...times, { nome, cor, id: uuid() }]);
   }
 
   function favoritar(id: string) {
@@ -87,7 +89,7 @@ function App() {
 
   return (
     <div className="App">
-      <Banner enderecoImagem='/imagens/banner.png' textoAlternativo='O banner principal da página do Organof'></Banner>
+      <Banner enderecoImagem='/imagens/banner.png' textoAlternativo='O banner principal da página do Organo'></Banner>
       <ToastContainer
         autoClose={3000}
         position='top-center'

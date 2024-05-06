@@ -29,7 +29,7 @@ const Rodape = () => {
                 <img src='./imagens/logo.png' alt='Logo Organo'></img>
             </div>
             <div>
-                <h2>Desenvolvido por Alura</h2>
+                <h2>Desenvolvido por João</h2>
             </div>
         </footer>
     )

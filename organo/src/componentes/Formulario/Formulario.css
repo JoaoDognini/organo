@@ -18,3 +18,14 @@
     font-weight: 400;
     font-size: 32px;
 }
+
+@media (max-width: 980px) {
+    .formulario {
+        margin: 0px 25px;
+    }
+
+    .formulario form {
+        text-align: center;
+        padding: 18px 32px;
+    }
+}

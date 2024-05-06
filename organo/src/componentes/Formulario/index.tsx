@@ -81,7 +81,7 @@ export const Formulario = ({ times, aoCadastrarColaborador, aoCadastrarTime }: F
                 <Campo
                     valor={imagem}
                     aoAlterar={valor => setImagem(valor)}
-                    obrigatorio={true}
+                    obrigatorio={false}
                     label="Imagem"
                     placeholder="Informe o endereço da imagem"
                 />
@@ -89,6 +89,7 @@ export const Formulario = ({ times, aoCadastrarColaborador, aoCadastrarTime }: F
                     label='Data de entrada'
                     placeholder=''
                     type='date'
+                    obrigatorio={true}
                     valor={data}
                     aoAlterar={valor => setData(valor)}
                 />
