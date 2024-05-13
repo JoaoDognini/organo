@@ -22,8 +22,8 @@
     background: #FFFFFF;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.08);
     border-radius: 0px 0px 10px 10px;
-    padding-top: 50px;
-    padding-bottom: 10px;
+    padding: 2rem 1rem 0.75rem 1rem;
+    gap: 10px;
 }
 
 .colaborador .rodape h4 {
@@ -31,7 +31,7 @@
     font-size: 18px;
     line-height: 22px;
     font-weight: bold;
-    margin: 20px 0;
+    margin: 20px 0 0 0;
 }
 
 .colaborador .rodape h5 {
@@ -39,7 +39,7 @@
     line-height: 22px;
     color: #212121;
     padding: 0 16px;
-    margin: 20px 0;
+    margin: 0;
 
 }
 
@@ -47,4 +47,8 @@
     position: absolute;
     right: -10px;
     top: -10px
+}
+
+.favoritar svg, .deletar:hover {
+    cursor: pointer;
 }

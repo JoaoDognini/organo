@@ -1,4 +1,4 @@
-.rodape {
+.footer {
     background: #6278F7;
     display: flex;
     justify-content: space-between;
@@ -7,14 +7,14 @@
     background-image: url('../../../public/imagens/fundo.png');
 }
 
-.rodape .redes ul {
+.footer .redes ul {
     padding: 0;
     display: flex;
     list-style: none;
     gap: 2rem;
 }
 
-.rodape div h2 {
+.footer div h2 {
     font-size: 1.25rem;
     font-family: 'Montserrat';
     color: #FFF;
@@ -22,12 +22,12 @@
 }
 
 @media (max-width: 980px) {
-    .rodape {
+    .footer {
         display: block;
         text-align: center;
     }
 
-    .rodape .redes ul {
+    .footer .redes ul {
         justify-content: center;
     }
 }
